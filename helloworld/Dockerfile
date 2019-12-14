@@ -23,8 +23,8 @@ FROM alpine:${ALPINE_VERSION} AS myalpine
 # UPGRADE LAYER
 # The point is to keep trace of logs our CI
 # ----------------------------------------------
-FROM myalpine AS what-to-upgrade
-RUN apk update && apk upgrade
+#FROM myalpine AS what-to-upgrade
+#RUN apk update && apk upgrade
 
 
 # ----------------------------------------------
@@ -56,11 +56,6 @@ RUN set -eux && apk --update --no-cache add \
     jq \
     apache2-utils
 
-    # update time zone (but crash default official docker tests)
-    #cp /usr/share/zoneinfo/America/New_York /etc/localtime  && \
-    #echo "America/New_York" > /etc/timezone                 && \
-    #apk del tzdata                                          && \
-
 # Best practice credit: https://github.com/opencontainers/image-spec/blob/master/annotations.md
 LABEL org.opencontainers.image.title="${APP_NAME}"                                              \
       org.opencontainers.image.version="${VERSION}"                                             \
@@ -76,6 +71,6 @@ LABEL org.opencontainers.image.title="${APP_NAME}"                              
       org.firepress.image.field2="not_set"                                                      \
       org.firepress.image.schemaversion="1.0"
 
-# Coyy my bash scripts
+# copy script
 COPY ./script.sh /usr/local/bin/script.sh
 ENTRYPOINT [ "./usr/local/bin/script.sh" ]
