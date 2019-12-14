@@ -13,4 +13,4 @@ set -o nounset
 # --- # --- # --- #
 
 clear && \
-echo "hello world from Montréal"
+htpasswd -Bbn admin changethispass
