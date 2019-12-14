@@ -51,11 +51,6 @@ RUN set -eux && apk --update --no-cache add \
 
 # Install custom apps
 RUN set -eux && apk --update --no-cache add \
-    gzip \
-    tar \
-    unzip \
-    zip \
-    tini \
     nano \
     openssh-client \
     jq \
@@ -82,5 +77,5 @@ LABEL org.opencontainers.image.title="${APP_NAME}"                              
       org.firepress.image.schemaversion="1.0"
 
 # Coyy my bash scripts
-COPY bin /usr/local/bin
-ENTRYPOINT [ "./usr/local/bin/random3.sh" ]
+COPY ./script.sh /usr/local/bin/script.sh
+ENTRYPOINT [ "./usr/local/bin/script.sh" ]
