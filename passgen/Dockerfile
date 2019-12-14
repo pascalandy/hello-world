@@ -82,7 +82,5 @@ LABEL org.opencontainers.image.title="${APP_NAME}"                              
       org.firepress.image.schemaversion="1.0"
 
 # Coyy my bash scripts
-COPY bin /usr/local/bin/
-
-WORKDIR /
-ENTRYPOINT [ "/usr/local/bin/random3.sh" ]
+COPY bin /usr/local/bin
+ENTRYPOINT [ "./usr/local/bin/random3.sh" ]
